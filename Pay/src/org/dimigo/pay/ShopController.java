@@ -33,18 +33,18 @@ public class ShopController {
 
 	@FXML
 	Button buy, charge, addprod;
-	
+
 	ShopMain shopmain = ShopMain.shopmain;
-	
+
 	// private Product prod;
 	private String code;
+
 	/**
 	* 
 	*/
-	
-	
+
 	public ShopController() {
-		
+
 		File file = new File("product.txt");
 
 		try (BufferedReader br = new BufferedReader(new FileReader(file));) {
@@ -65,7 +65,7 @@ public class ShopController {
 	}
 
 	public void Order(ActionEvent event) {
-		
+
 		String tmpCode;
 		String tmpName;
 

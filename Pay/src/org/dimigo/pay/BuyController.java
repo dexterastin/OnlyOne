@@ -15,14 +15,15 @@ import javafx.scene.control.TextField;
  *
  */
 public class BuyController {
-	
+
 	ShopMain shopmain = ShopMain.shopmain;
 
 	@FXML
 	private Label totalMoneyLabel;
-	
-	@FXML private TextField cardcode;
-	
+
+	@FXML
+	private TextField cardcode;
+
 	private int totalMoney;
 
 	public BuyController() {

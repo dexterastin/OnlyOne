@@ -16,12 +16,12 @@ import javafx.stage.Stage;
  *
  */
 public class ShopMain extends Application {
-	
+
 	protected HashMap<String, Product> ProductMap = new HashMap<String, Product>();
 	protected HashMap<String, String[]> ProductList = new HashMap<String, String[]>();
-	
+
 	static ShopMain shopmain = new ShopMain();
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
