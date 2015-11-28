@@ -7,11 +7,13 @@ package org.dimigo.pay;
  * @author dexterastin
  *
  */
+
+// 물건 객체
 public class Product {
-	private String code;
-	private String name;
-	private int price;
-	private int cnt;
+	private String code; // 물건 상품코드
+	private String name; // 물건 이름
+	private int price; // 물건 가격
+	private int cnt; // 물건 개수
 
 	/**
 	 * @return the code
@@ -75,6 +77,7 @@ public class Product {
 
 	public Product(String code, int price, int cnt) {
 		super();
+		// 파싱한 리스트중 같은 코드 값을 가지고 있는 물건의 이름을 가져온다.
 		this.name = ShopMain.shopmain.ProductList.get(code)[1];
 		this.code = code;
 		this.price = price;

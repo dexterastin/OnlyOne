@@ -23,27 +23,33 @@ import javafx.stage.Stage;
  * @author dexterastin
  *
  */
+//Buy.fxml을 제어하기 위한 컨트롤러
+
 public class BuyController {
 
 	ShopMain shopmain = ShopMain.shopmain;
 
 	@FXML
-	private Label totalMoneyLabel;
+	private Label totalMoneyLabel; // 마지막 결과를 띄워주는 Label
 
 	@FXML
-	private TextField cardcode;
+	private TextField cardcode; // 학생증 코드를 입력받는 필드
 
 	@FXML
-	private Button close;
+	private Button close; // 닫는 버튼
 
-	private int totalMoney;
-	private User user;
+	private int totalMoney;// 남은 총 금액
+	private User user; // 유저 객체
 
 	public BuyController() {
+		
+		// 총금액 계산
 		for (Entry<String, Product> product : shopmain.ProductMap.entrySet()) {
 			totalMoney += shopmain.ProductMap.get(product.getKey()).getPrice();
 			// System.out.println(totalMoney);
 		}
+		
+		// 엔터입력시 입력된 문자열로 데이터가져오도록 이벤트 설정
 		try {
 			cardcode.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				/*
@@ -67,6 +73,7 @@ public class BuyController {
 
 	}
 
+	// 계산하는 함수
 	public void SubmitPay() {
 
 		if (totalMoney > 0) {
@@ -96,7 +103,8 @@ public class BuyController {
 		}
 
 	}
-
+	
+	// 메인으로 씬 병경
 	public void ChangeMainScence(ActionEvent event) throws IOException {
 		Stage stage;
 		Parent root;

@@ -32,21 +32,23 @@ import javafx.stage.Stage;
  * @author dexterastin
  *
  */
+// Shop.fxml을 제어하기 위한 컨트롤러
 public class ShopController {
 
 	@FXML
-	private TextField txtProdCode;
+	private TextField txtProdCode; // 물건 바코드를 입력 받기 위한 필드
 
 	@FXML
-	private TableView<Product> tbv = new TableView<Product>();
+	private TableView<Product> tbv = new TableView<Product>(); // 입력한 물건들을 띄우기
+																// 위한 테이블
 
 	@FXML
-	Button buy, charge, addprod;
+	Button buy, charge; // 확정, 충전 버튼
 
-	ShopMain shopmain = ShopMain.shopmain;
+	ShopMain shopmain = ShopMain.shopmain; // 정적 변수를 편하게 쓰기위해 선언
 
 	// private Product prod;
-	private String code;
+	private String code; // 입력된 물건 바코드
 
 	/**
 	* 
@@ -57,6 +59,7 @@ public class ShopController {
 		shopmain.ProductList.clear();
 		shopmain.ProductMap.clear();
 
+		/////// 물건 리스트 텍스트를 파싱하여 정보등록///////
 		File file = new File("product.txt");
 
 		try (BufferedReader br = new BufferedReader(new FileReader(file));) {
@@ -69,7 +72,11 @@ public class ShopController {
 				shopmain.ProductList.put($arr[0], $arr);
 			}
 
+			//////////////////////////////////////////////////
+
 			// System.out.println(shopmain.ProductList);
+
+			// KeyPress 이벤트 설정.
 
 			txtProdCode.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				/*
@@ -81,19 +88,20 @@ public class ShopController {
 				public void handle(KeyEvent t) {
 					// TODO Auto-generated method stub
 					if (t.getCode() == KeyCode.ENTER) {
-						AddProductList();
+						Order();
 					} else {
 					}
 				}
 			});
-
+			////////////////////////////////////////////////////
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}
 
 	}
 
-	public void AddProductList() {
+	// 물건 관리 함수
+	public void Order() {
 
 		String tmpCode;
 		String tmpName;
@@ -133,7 +141,8 @@ public class ShopController {
 		setTable();
 
 	}
-
+	
+	// 테이블 세팅 함수
 	public void setTable() {
 
 		ObservableList<Product> data = FXCollections.observableArrayList(new ArrayList(shopmain.ProductMap.values()));
@@ -153,6 +162,7 @@ public class ShopController {
 
 	}
 
+	// 상품이 등록되어 있는지 없는지 확인
 	public boolean CheckCodeMap(HashMap<String, Product> ProductMap, String code) {
 		boolean tmp = false;
 
@@ -163,6 +173,7 @@ public class ShopController {
 		return tmp;
 	}
 
+	// 물건 추가
 	public void AddProduct(HashMap<String, Product> ProductMap, String code) {
 		int cnt = ProductMap.get(code).getCnt();
 		int price = ProductMap.get(code).getPrice();
@@ -177,6 +188,7 @@ public class ShopController {
 
 	}
 
+	// 물건 취소
 	public void CancleProduct(HashMap<String, Product> ProductMap, String code) {
 		int cnt = ProductMap.get(code).getCnt();
 		int price = ProductMap.get(code).getPrice();
@@ -188,7 +200,8 @@ public class ShopController {
 		ProductMap.get(code).setPrice((price / cnt) * (cnt - 1));
 
 	}
-
+	
+	// 물건이 있는지 없는지 확인
 	public boolean CheckProductList(String code, HashMap<String, String[]> ProductList) {
 		boolean tmp = false;
 
@@ -198,11 +211,8 @@ public class ShopController {
 
 		return tmp;
 	}
-
-	public void TableSet() {
-
-	}
-
+	
+	// 씬 전환 메소드
 	public void ScenceHandler(ActionEvent event) throws IOException {
 		Stage stage;
 		Parent root;

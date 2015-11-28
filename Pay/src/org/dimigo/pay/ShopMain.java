@@ -17,8 +17,8 @@ import javafx.stage.Stage;
  */
 public class ShopMain extends Application {
 
-	protected HashMap<String, Product> ProductMap = new HashMap<String, Product>();
-	protected HashMap<String, String[]> ProductList = new HashMap<String, String[]>();
+	protected HashMap<String, Product> ProductMap = new HashMap<String, Product>(); // 사용자가 구매하려는 물건들
+	protected HashMap<String, String[]> ProductList = new HashMap<String, String[]>();// 현재 상점에 있는 물건들
 
 	static ShopMain shopmain = new ShopMain();
 
