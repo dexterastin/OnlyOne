@@ -5,16 +5,45 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-	prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="org.dimigo.pay.ShopController">
+<AnchorPane centerShape="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dimigo.pay.ChargeController">
 	<children>
-		<TextField layoutX="117.0" layoutY="136.0" />
-		<TextField layoutX="123.0" layoutY="181.0" />
-		<Button layoutX="182.0" layoutY="218.0" mnemonicParsing="false"
-			text="Button" />
-		<Label layoutX="268.0" layoutY="223.0" text="moy" />
+		<TextField fx:id="txtCode" alignment="CENTER" layoutX="163.0" layoutY="155.0" promptText="학생증 코드">
+			<font>
+				<Font name="System Bold" size="20.0" />
+			</font>
+		</TextField>
+		<TextField fx:id="txtMoney" alignment="CENTER" layoutX="163.0" layoutY="200.0" prefHeight="26.0" prefWidth="271.0" promptText="충전할 금액">
+			<font>
+				<Font name="System Bold" size="20.0" />
+			</font>
+		</TextField>
+		<Button fx:id="submit" layoutX="171.0" layoutY="289.0" mnemonicParsing="false" onAction="#Charge" prefHeight="39.0" prefWidth="118.0" text="충전하기">
+			<font>
+				<Font name="System Bold" size="15.0" />
+			</font>
+		</Button>
+		<Button fx:id="close" layoutX="305.0" layoutY="289.0" mnemonicParsing="false" onAction="#ChangeMainScence" prefHeight="39.0" prefWidth="125.0" text="나가기">
+			<font>
+				<Font name="System Bold" size="15.0" />
+			</font>
+		</Button>
+		<Label layoutX="188.0" layoutY="82.0" text="학생증 바코드를 입력하신 후,">
+			<font>
+				<Font size="19.0" />
+			</font>
+		</Label>
+		<Label layoutX="197.0" layoutY="110.0" text="충전할 금액을 입력해주세요">
+			<font>
+				<Font size="19.0" />
+			</font>
+		</Label>
+		
+      <Label fx:id="result" layoutX="171.0" layoutY="254.0" prefHeight="18.0" prefWidth="354.0" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label> 
 	</children>
 </AnchorPane>

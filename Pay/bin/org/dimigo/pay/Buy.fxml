@@ -11,10 +11,29 @@
 	prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="org.dimigo.pay.BuyController">
 	<children>
-		<TextField fx:id="cardcode" layoutX="71.0" layoutY="131.0" />
-		<Button layoutX="257.0" layoutY="131.0" mnemonicParsing="false"
-			text="Button" onAction="#InputInformation" />
-		<Label fx:id="totalMoneyLabel" layoutX="97.0" layoutY="200.0"
-			text="txtxt" />
+		<TextField fx:id="cardcode" alignment="CENTER" layoutX="169.0"
+			layoutY="173.0" promptText="학생증 " onAction="#SubmitPay">
+			<font>
+				<Font name="System Bold" size="20.0" />
+			</font>
+		</TextField>
+		<Button fx:id="close" layoutX="250.0" layoutY="277.0"
+			mnemonicParsing="false" onAction="#ChangeMainScence" prefHeight="39.0"
+			prefWidth="115.0" text="닫기">
+			<font>
+				<Font name="System Bold" size="15.0" />
+			</font>
+		</Button>
+		<Label fx:id="totalMoneyLabel" alignment="CENTER" layoutX="87.0"
+			layoutY="237.0" prefHeight="18.0" prefWidth="421.0">
+			<font>
+				<Font name="System Bold" size="20.0" />
+			</font>
+		</Label>
+		<Label layoutX="120.0" layoutY="107.0" text="학생증 바코드를 찍어주세요!">
+			<font>
+				<Font name="System Bold" size="30.0" />
+			</font>
+		</Label>
 	</children>
 </AnchorPane>

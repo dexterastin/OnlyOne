@@ -3,38 +3,20 @@
  */
 package org.dimigo.pay;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 /**
  * @author dexterastin
  *
  */
 public class Product {
-	private SimpleStringProperty code;
-	private SimpleIntegerProperty price;
-	private SimpleIntegerProperty cnt;
-
-	public Product(String code, int price) {
-		this.code = new SimpleStringProperty(code);
-		this.price = new SimpleIntegerProperty(price);
-		this.cnt = new SimpleIntegerProperty(1);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Product [code=" + code + ", price=" + price + ", cnt=" + cnt + "]";
-	}
+	private String code;
+	private String name;
+	private int price;
+	private int cnt;
 
 	/**
 	 * @return the code
 	 */
-	public SimpleStringProperty getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -42,14 +24,29 @@ public class Product {
 	 * @param code
 	 *            the code to set
 	 */
-	public void setCode(SimpleStringProperty code) {
+	public void setCode(String code) {
 		this.code = code;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
 	 * @return the price
 	 */
-	public SimpleIntegerProperty getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
@@ -57,14 +54,14 @@ public class Product {
 	 * @param price
 	 *            the price to set
 	 */
-	public void setPrice(SimpleIntegerProperty price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
 	/**
 	 * @return the cnt
 	 */
-	public SimpleIntegerProperty getCnt() {
+	public int getCnt() {
 		return cnt;
 	}
 
@@ -72,7 +69,15 @@ public class Product {
 	 * @param cnt
 	 *            the cnt to set
 	 */
-	public void setCnt(SimpleIntegerProperty cnt) {
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public Product(String code, int price, int cnt) {
+		super();
+		this.name = ShopMain.shopmain.ProductList.get(code)[1];
+		this.code = code;
+		this.price = price;
 		this.cnt = cnt;
 	}
 
