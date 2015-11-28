@@ -49,6 +49,9 @@ public class ShopController {
 
 	// private Product prod;
 	private String code; // 입력된 물건 바코드
+	
+	private ObservableList<Product> data = FXCollections.observableArrayList(); // 테이블을 위한 변수
+
 
 	/**
 	* 
@@ -96,6 +99,7 @@ public class ShopController {
 			////////////////////////////////////////////////////
 		} catch (Exception e) {
 			// e.printStackTrace();
+
 		}
 
 	}
@@ -122,9 +126,7 @@ public class ShopController {
 			else
 				shopmain.ProductMap.put(code, new Product(code, nowPrice, 1)); // 물건추가
 		}
-		System.out.println(shopmain.ProductMap);
-
-		txtProdCode.clear();
+		// System.out.println(shopmain.ProductMap);
 
 		tbv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -132,7 +134,7 @@ public class ShopController {
 			public void handle(MouseEvent event) {
 
 				if (event.getClickCount() == 2) {
-					System.out.println("fuck");
+					// System.out.println("ss");
 					CancleProduct(shopmain.ProductMap, shopmain.ProductList.get(code)[0]);
 				}
 			}
@@ -140,14 +142,17 @@ public class ShopController {
 
 		setTable();
 
+		txtProdCode.clear();
+
 	}
-	
+
 	// 테이블 세팅 함수
 	public void setTable() {
+		data.clear();
+		
+		data.addAll(new ArrayList(shopmain.ProductMap.values()));
 
-		ObservableList<Product> data = FXCollections.observableArrayList(new ArrayList(shopmain.ProductMap.values()));
-
-		System.out.println(new ArrayList(shopmain.ProductMap.values()));
+		// System.out.println(new ArrayList(shopmain.ProductMap.values()));
 
 		tbv.setItems(data);
 
@@ -198,9 +203,9 @@ public class ShopController {
 
 		ProductMap.get(code).setCnt(cnt - 1);
 		ProductMap.get(code).setPrice((price / cnt) * (cnt - 1));
-
+		
 	}
-	
+
 	// 물건이 있는지 없는지 확인
 	public boolean CheckProductList(String code, HashMap<String, String[]> ProductList) {
 		boolean tmp = false;
@@ -211,7 +216,7 @@ public class ShopController {
 
 		return tmp;
 	}
-	
+
 	// 씬 전환 메소드
 	public void ScenceHandler(ActionEvent event) throws IOException {
 		Stage stage;
