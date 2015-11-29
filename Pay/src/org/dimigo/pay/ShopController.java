@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.PromptData;
 import javafx.stage.Stage;
 
 /**
@@ -41,6 +44,8 @@ public class ShopController {
 	@FXML
 	private TableView<Product> tbv = new TableView<Product>(); // 입력한 물건들을 띄우기
 																// 위한 테이블
+	
+	@FXML private Label totalmoney, error;
 
 	@FXML
 	Button buy, charge; // 확정, 충전 버튼
@@ -49,9 +54,12 @@ public class ShopController {
 
 	// private Product prod;
 	private String code; // 입력된 물건 바코드
-	
-	private ObservableList<Product> data = FXCollections.observableArrayList(); // 테이블을 위한 변수
 
+	private ObservableList<Product> data = FXCollections.observableArrayList(); // 테이블을
+																				// 위한
+																				// 변수
+	// 총금액
+	private int totmoney = 0;
 
 	/**
 	* 
@@ -116,7 +124,9 @@ public class ShopController {
 
 		if (!CheckProductList(code, shopmain.ProductList)) {
 			System.out.println("없는물건");
+			error.setText("없는 물건입니다. 물건을 추가해주세요.");
 		} else {
+			error.setText("정상작동중");
 			tmpCode = shopmain.ProductList.get(code)[0];
 			tmpName = shopmain.ProductList.get(code)[1];
 			nowPrice = Integer.parseInt(shopmain.ProductList.get(code)[2]);
@@ -126,21 +136,28 @@ public class ShopController {
 			else
 				shopmain.ProductMap.put(code, new Product(code, nowPrice, 1)); // 물건추가
 		}
-		// System.out.println(shopmain.ProductMap);
 
-		tbv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		// System.out.println(shopmain.ProductMap);ㄴ
 
-			@Override
-			public void handle(MouseEvent event) {
-
-				if (event.getClickCount() == 2) {
-					// System.out.println("ss");
-					CancleProduct(shopmain.ProductMap, shopmain.ProductList.get(code)[0]);
-				}
-			}
-		});
+		/*
+		 * tbv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		 * 
+		 * @Override public void handle(MouseEvent event) {
+		 * 
+		 * if (event.getClickCount() == 2) { // System.out.println("ss");
+		 * 
+		 * System.out.println(event.getTarget().getClass().toString());
+		 * CancleProduct(shopmain.ProductMap,
+		 * shopmain.ProductList.get(code)[0]); } } });
+		 */
 
 		setTable();
+		
+		for (Entry<String, Product> product : shopmain.ProductMap.entrySet()) {
+			totmoney += shopmain.ProductMap.get(product.getKey()).getPrice();
+		}
+		
+		totalmoney.setText(String.format("%,d", totmoney) + "원");
 
 		txtProdCode.clear();
 
@@ -149,7 +166,7 @@ public class ShopController {
 	// 테이블 세팅 함수
 	public void setTable() {
 		data.clear();
-		
+
 		data.addAll(new ArrayList(shopmain.ProductMap.values()));
 
 		// System.out.println(new ArrayList(shopmain.ProductMap.values()));
@@ -194,17 +211,19 @@ public class ShopController {
 	}
 
 	// 물건 취소
-	public void CancleProduct(HashMap<String, Product> ProductMap, String code) {
-		int cnt = ProductMap.get(code).getCnt();
-		int price = ProductMap.get(code).getPrice();
-
-		if (cnt == 0)
-			++cnt;
-
-		ProductMap.get(code).setCnt(cnt - 1);
-		ProductMap.get(code).setPrice((price / cnt) * (cnt - 1));
-		
-	}
+	/*
+	 * public void CancleProduct(HashMap<String, Product> ProductMap, String
+	 * code) { int cnt = ProductMap.get(code).getCnt(); int price =
+	 * ProductMap.get(code).getPrice();
+	 * 
+	 * if (cnt == 0) { System.out.println(ProductMap.remove(code)); } else {
+	 * ProductMap.get(code).setPrice((price / cnt) * (cnt - 1));
+	 * ProductMap.get(code).setCnt(cnt - 1); }
+	 * 
+	 * setTable();
+	 * 
+	 * }
+	 */
 
 	// 물건이 있는지 없는지 확인
 	public boolean CheckProductList(String code, HashMap<String, String[]> ProductList) {

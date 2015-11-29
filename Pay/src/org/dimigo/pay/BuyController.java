@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  * @author dexterastin
  *
  */
-//Buy.fxml을 제어하기 위한 컨트롤러
+// Buy.fxml을 제어하기 위한 컨트롤러
 
 public class BuyController {
 
@@ -42,13 +42,13 @@ public class BuyController {
 	private User user; // 유저 객체
 
 	public BuyController() {
-		
+
 		// 총금액 계산
 		for (Entry<String, Product> product : shopmain.ProductMap.entrySet()) {
 			totalMoney += shopmain.ProductMap.get(product.getKey()).getPrice();
 			// System.out.println(totalMoney);
 		}
-		
+
 		// 엔터입력시 입력된 문자열로 데이터가져오도록 이벤트 설정
 		try {
 			cardcode.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -60,11 +60,8 @@ public class BuyController {
 				@Override
 				public void handle(KeyEvent t) {
 					// TODO Auto-generated method stub
-					if (t.getCode() == KeyCode.ENTER) {
+					if (t.getCode() == KeyCode.ENTER)
 						SubmitPay();
-						System.out.println("fuck");
-					} else {
-					}
 				}
 			});
 		} catch (Exception e) {
@@ -92,18 +89,18 @@ public class BuyController {
 				userConnect.Connet(code);
 				user = userConnect.getUser();
 
-				totalMoneyLabel.setText("결제를 성공했습니다. " + user.getMoney() + "원 남았습니다.");
+				totalMoneyLabel.setText("결제를 성공했습니다. " + String.format("%,d", user.getMoney()) + "원" + " 남았습니다.");
 
 			} else {
 				// System.out.println("fail");
-				totalMoneyLabel.setText("잔액이 부족합니다. 충전해주세요. 현재잔액 : " + user.getMoney());
+				totalMoneyLabel.setText("잔액이 부족합니다. 충전해주세요. 현재잔액 : " + String.format("%,d", user.getMoney()) + "원");
 			}
 		} else {
 			totalMoneyLabel.setText("이놈! 어디서 장난질이냐! 어서 물건이나 가져와라!");
 		}
 
 	}
-	
+
 	// 메인으로 씬 병경
 	public void ChangeMainScence(ActionEvent event) throws IOException {
 		Stage stage;

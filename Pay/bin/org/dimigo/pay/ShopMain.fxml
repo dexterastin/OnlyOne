@@ -6,31 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0"
-	prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="org.dimigo.pay.ShopController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dimigo.pay.ShopController">
 	<children>
-		<TextField fx:id="txtProdCode" layoutX="25.0" layoutY="59.0"
-			onAction="#Order" />
-		<TableView fx:id="tbv" layoutX="26.0" layoutY="90.0"
-			prefHeight="260.0" prefWidth="586.0">
+		<TextField fx:id="txtProdCode" layoutX="25.0" layoutY="59.0" onAction="#Order" />
+		<TableView fx:id="tbv" layoutX="26.0" layoutY="90.0" prefHeight="260.0" prefWidth="586.0">
 			<columns>
 				<TableColumn prefWidth="307.0" text="name" />
 				<TableColumn prefWidth="124.0" text="cnt" />
 				<TableColumn prefWidth="154.0" text="price" />
 			</columns>
 		</TableView>
-		<Button fx:id="buy" layoutX="472.0" layoutY="355.0"
-			mnemonicParsing="false" onAction="#ScenceHandler" prefHeight="64.0"
-			prefWidth="139.0" text="확정">
+		<Button fx:id="buy" layoutX="472.0" layoutY="355.0" mnemonicParsing="false" onAction="#ScenceHandler" prefHeight="64.0" prefWidth="139.0" text="확정">
 			<font>
 				<Font name="System Bold" size="20.0" />
 			</font>
 		</Button>
-		<Button fx:id="charge" layoutX="345.0" layoutY="354.0"
-			mnemonicParsing="false" onAction="#ScenceHandler" prefHeight="64.0"
-			prefWidth="119.0" text="카드충전">
+		<Button fx:id="charge" layoutX="345.0" layoutY="354.0" mnemonicParsing="false" onAction="#ScenceHandler" prefHeight="64.0" prefWidth="119.0" text="카드충전">
 			<font>
 				<Font size="20.0" />
 			</font>
@@ -40,5 +31,16 @@
 				<Font name="Georgia" size="50.0" />
 			</font>
 		</Label>
+		<Label layoutX="26.0" layoutY="362.0" text="총금액 : ">
+			<font>
+				<Font name="System Bold" size="15.0" />
+			</font>
+		</Label>
+		<Label fx:id="totalmoney" layoutX="82.0" layoutY="363.0">
+			<font>
+				<Font name="System Bold" size="15.0" />
+			</font>
+		</Label>
+      <Label fx:id="error" layoutX="26.0" layoutY="395.0" />
 	</children>
 </AnchorPane>
